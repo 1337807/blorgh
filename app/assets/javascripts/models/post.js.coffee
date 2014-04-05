@@ -1,19 +1,38 @@
 Blorgh.Post = Ember.Object.extend
   save: ->
+    if this.id
+      @update()
+    else
+      @create()
+
+  update: ->
+    $.ajax "api/posts/#{@id}",
+      type: 'PUT',
+      data:
+        post:
+          title: this.title
+          text: this.text
+    .then (response) ->
+      Ember.run () ->
+        Blorgh.Post.create(response)
+
+  create: ->
     $.post "api/posts",
-      post: {
+      post:
         title: this.title
         text: this.text
-      }
+    .then (response) ->
+      Ember.run () ->
+        Blorgh.Post.create(response)
 
 Blorgh.Post.reopenClass
   find: (id) ->
-    $.getJSON("/api/posts/#{id}").then (post) ->
-      post
+    Ember.$.getJSON("/api/posts/#{id}").then (post) ->
+      Ember.run () ->
+        Blorgh.Post.create(post)
   findAll: ->
     posts = Em.A()
-    $.getJSON('/api/posts').then (data) ->
-      $.each data.posts, (index, post) ->
-        posts.pushObject(post)
-    console.log(posts)
-    posts
+    Ember.$.getJSON('/api/posts').then (data) ->
+      Ember.run () ->
+        posts.pushObjects(data.posts)
+        posts
