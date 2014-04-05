@@ -16,6 +16,15 @@ class Api::PostsController < ApplicationController
     end
   end
 
+  def update
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      render :show
+    else
+      render "api/shared/errors", resource: @post, status: 422
+    end
+  end
+
   private
 
   def post_params
