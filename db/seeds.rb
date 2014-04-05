@@ -5,4 +5,5 @@ Post.create!(
 
 Post.create!(
   :title => "Light Angular trolling",
-  :text => "TODO: think of pithy things to say about Angular")
+  :text => "TODO: think of pithy things to say about Angular"
+)
