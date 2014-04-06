@@ -25,6 +25,11 @@ Blorgh.Post = Ember.Object.extend
       Ember.run () ->
         Blorgh.Post.create(response)
 
+  destroy: ->
+    $.ajax "api/posts/#{@id}",
+      type: 'DELETE'
+
+
 Blorgh.Post.reopenClass
   find: (id) ->
     Ember.$.getJSON("/api/posts/#{id}").then (post) ->
