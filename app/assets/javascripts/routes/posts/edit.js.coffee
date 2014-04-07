@@ -1,7 +1,4 @@
 Blorgh.PostsEditRoute = Ember.Route.extend
-  model: (params) ->
-    Blorgh.Post.find(params.id)
-
   actions:
     save: ->
       route = this
