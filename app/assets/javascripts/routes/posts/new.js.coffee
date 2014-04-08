@@ -1,9 +1,7 @@
 Blorgh.PostsNewRoute = Ember.Route.extend
   model: ->
-    Blorgh.Post.create({})
-
+    @store.createRecord('post')
   actions:
     save: ->
-      route = this
-      this.currentModel.save().then (model) ->
-        route.transitionTo('post', model)
+      @model.save().then (model) ->
+      @transitionTo('post', model)

@@ -47,4 +47,5 @@ end
 gem 'bootstrap-sass', '3.1.1.0'
 gem 'rabl', '0.9.3'
 gem 'ember-rails'
-gem 'ember-source', '1.4.0'
+gem 'ember-source', '1.5.0'
+gem 'ember-data-source', '1.0.0.beta.7'
