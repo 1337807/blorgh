@@ -1,11 +1,10 @@
-Blorgh.CommentsNewController = Ember.Controller.extend({
+Blorgh.CommentsNewController = Ember.ObjectController.extend
   needs: ['post']
-  content: ->
-    @store.createRecord('comment', { post: @parentController.content })
 
   actions:
-    save: ->
-      debugger
-      this.content
-
-})
+    save: (comment) ->
+      post = comment.get('post')
+      controller = this
+      comment.save().then (response) ->
+        post.get('comments').pushObject comment
+        controller.transitionToRoute('post', post)

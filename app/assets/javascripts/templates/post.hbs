@@ -7,3 +7,8 @@
 
 
 {{ render 'comments/new' }}
+
+{{#each comments}}
+  <strong>{{author}}</strong>
+  {{text}}
+{{/each}}

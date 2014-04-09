@@ -1,3 +1,4 @@
 Blorgh.Comment = DS.Model.extend
-  author: DS.attr('string')
+  username: DS.attr('string')
   text: DS.attr('string')
+  post: DS.belongsTo('post')

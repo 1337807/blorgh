@@ -5,9 +5,8 @@ Blorgh::Application.routes.draw do
   end
 
   namespace :api do
-    resources :posts do
-      resources :comments
-    end
+    resources :posts
+    resources :comments
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
